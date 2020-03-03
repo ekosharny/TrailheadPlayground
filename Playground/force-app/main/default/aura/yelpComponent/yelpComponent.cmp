@@ -1,0 +1,28 @@
+<aura:component controller="YelpController" implements="flexipage:availableForRecordHome,force:lightningQuickAction,force:hasRecordId" access="global">
+    
+    <aura:attribute name="mapMarkers" type="Object"/>
+    
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    
+    <lightning:layout class="slds-page-header slds-page-header--object-home" verticalAlign="center" horizontalAlign="center">
+        <lightning:layoutItem>
+            <lightning:icon iconName="action:map" alternativeText="Yelp"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="around-small" alignmentBump="right">
+            <div class="page-section page-header">
+                <h1 class="slds-text-heading--label">Search Yelp</h1>
+                <div onkeyup="{! c.handleKeyUp }">
+                    <lightning:input name="inline-search-input"
+                                     aura:id="enter-search"
+                                     label="search"
+                                     type="search"
+                                     variant="label-hidden"/>
+                </div>
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+    <div style="background:white">
+    	<lightning:map mapMarkers="{! v.mapMarkers }" 
+                       markersTitle="Search Results"/>
+    </div>
+</aura:component>
